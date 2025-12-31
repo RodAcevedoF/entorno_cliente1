@@ -1,0 +1,158 @@
+{
+	"sessions": [
+		{
+			"id": "1",
+			"name": "Inner Journey Awakening",
+			"price": 105,
+			"duration": 90,
+			"category": "meditation",
+			"level": "beginner",
+			"instructor": "Maria Valenti",
+			"description": "Embark on a transformative journey to discover your authentic self through guided meditation and breathwork.",
+			"maxParticipants": 15,
+			"image": "inner-journey.jpg"
+		},
+		{
+			"id": "2",
+			"name": "Awakening Meditation",
+			"price": 200,
+			"duration": 120,
+			"category": "meditation",
+			"level": "intermediate",
+			"instructor": "Carlos Mendez",
+			"description": "Advanced meditation techniques to elevate consciousness and unlock deeper states of awareness.",
+			"maxParticipants": 12,
+			"image": "awakening-meditation.jpg"
+		},
+		{
+			"id": "3",
+			"name": "Supra Conscious Connection",
+			"price": 205,
+			"duration": 150,
+			"category": "consciousness",
+			"level": "advanced",
+			"instructor": "Sofia Ramirez",
+			"description": "Explore the highest realms of consciousness and connect with your infinite potential.",
+			"maxParticipants": 10,
+			"image": "supra-conscious.jpg"
+		},
+		{
+			"id": "4",
+			"name": "Chakra Alignment Journey",
+			"price": 85,
+			"duration": 75,
+			"category": "energy-work",
+			"level": "beginner",
+			"instructor": "Luna Torres",
+			"description": "Balance and align your seven chakras through sound healing, visualization, and energy techniques.",
+			"maxParticipants": 20,
+			"image": "chakra-alignment.jpg"
+		},
+		{
+			"id": "5",
+			"name": "Lucid Dreaming Workshop",
+			"price": 175,
+			"duration": 180,
+			"category": "dreams",
+			"level": "intermediate",
+			"instructor": "David Suarez",
+			"description": "Master the art of lucid dreaming and explore the boundless landscape of your subconscious mind.",
+			"maxParticipants": 15,
+			"image": "lucid-dreaming.jpg"
+		},
+		{
+			"id": "6",
+			"name": "Quantum Healing Session",
+			"price": 250,
+			"duration": 120,
+			"category": "healing",
+			"level": "advanced",
+			"instructor": "Maria Valenti",
+			"description": "Experience profound healing through quantum consciousness techniques and energy restoration.",
+			"maxParticipants": 8,
+			"image": "quantum-healing.jpg"
+		},
+		{
+			"id": "7",
+			"name": "Mindfulness for Beginners",
+			"price": 65,
+			"duration": 60,
+			"category": "meditation",
+			"level": "beginner",
+			"instructor": "Ana Silva",
+			"description": "Learn foundational mindfulness practices to reduce stress and cultivate present-moment awareness.",
+			"maxParticipants": 25,
+			"image": "mindfulness-basics.jpg"
+		},
+		{
+			"id": "8",
+			"name": "Astral Projection Experience",
+			"price": 220,
+			"duration": 150,
+			"category": "consciousness",
+			"level": "advanced",
+			"instructor": "Carlos Mendez",
+			"description": "Guided journey into astral projection and out-of-body experiences with safety protocols.",
+			"maxParticipants": 10,
+			"image": "astral-projection.jpg"
+		},
+		{
+			"id": "9",
+			"name": "Sacred Sound Bath",
+			"price": 95,
+			"duration": 90,
+			"category": "energy-work",
+			"level": "beginner",
+			"instructor": "Luna Torres",
+			"description": "Immerse yourself in healing vibrations from crystal bowls, gongs, and ancient instruments.",
+			"maxParticipants": 30,
+			"image": "sound-bath.jpg"
+		},
+		{
+			"id": "10",
+			"name": "Breathwork Transformation",
+			"price": 130,
+			"duration": 105,
+			"category": "healing",
+			"level": "intermediate",
+			"instructor": "Sofia Ramirez",
+			"description": "Powerful breathwork techniques to release trauma, expand consciousness, and revitalize your being.",
+			"maxParticipants": 18,
+			"image": "breathwork.jpg"
+		},
+		{
+			"id": "11",
+			"name": "Past Life Regression",
+			"price": 285,
+			"duration": 180,
+			"category": "consciousness",
+			"level": "advanced",
+			"instructor": "David Suarez",
+			"description": "Journey through time to explore past incarnations and unlock ancient wisdom for present healing.",
+			"maxParticipants": 6,
+			"image": "past-life.jpg"
+		},
+		{
+			"id": "12",
+			"name": "Kundalini Awakening",
+			"price": 195,
+			"duration": 135,
+			"category": "energy-work",
+			"level": "intermediate",
+			"instructor": "Ana Silva",
+			"description": "Safely awaken your kundalini energy through yoga, breathwork, and guided meditation practices.",
+			"maxParticipants": 12,
+			"image": "kundalini.jpg"
+		}
+	],
+	"users": [
+		{
+			"id": "7f6b",
+			"username": "t@t.com",
+			"password": "1234",
+			"role": "user",
+			"createdAt": "2025-12-31T12:45:42.365Z"
+		}
+	],
+	"orders": []
+}

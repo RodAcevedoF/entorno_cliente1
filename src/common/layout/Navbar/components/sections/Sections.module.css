@@ -1,0 +1,19 @@
+.navbarLeft {
+	flex: 1;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.navbarCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navbarRight {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}

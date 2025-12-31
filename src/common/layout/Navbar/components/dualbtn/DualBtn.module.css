@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+.btnPrimary {
+    padding: 0.5rem 1rem;
+    background: var(--color-accent-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+    opacity: 0.9;
+}
+
+.btnSecondary {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid rgba(44, 62, 44, 0.2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btnSecondary:hover {
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+}
+
+.btnLogout {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btnLogout:hover {
+    color: var(--color-error);
+    text-decoration: underline;
+}

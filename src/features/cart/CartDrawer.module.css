@@ -1,0 +1,203 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 13, 8, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+    animation: fadeIn 0.3s ease;
+}
+
+.drawer {
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: var(--color-bg-secondary);
+    border-left: 1px solid rgba(56, 188, 105, 0.2);
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    padding: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h2 {
+    font-size: 1.5rem;
+    color: var(--color-accent-primary);
+    font-family: var(--font-heading);
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: var(--color-text-primary);
+}
+
+.items {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.empty {
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.startBtn {
+    background: transparent;
+    border: 1px solid var(--color-accent-primary);
+    color: var(--color-accent-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.startBtn:hover {
+    background: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemName {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.itemPrice {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.itemActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.itemTotal {
+    color: var(--color-accent-secondary);
+    font-weight: 600;
+}
+
+.removeBtn {
+    background: transparent;
+    border: none;
+    color: var(--color-error);
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.removeBtn:hover {
+    opacity: 1;
+}
+
+.footer {
+    padding: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.totalRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.totalAmount {
+    color: var(--color-accent-primary);
+}
+
+.actions {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.clearBtn {
+    padding: 0.8rem 1rem;
+    background: transparent;
+    border: 1px solid var(--color-text-muted);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clearBtn:hover {
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+.checkoutBtn {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    background: var(--color-accent-primary);
+    border: none;
+    color: var(--color-bg-primary);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkoutBtn:hover {
+    background: #4ade80;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}

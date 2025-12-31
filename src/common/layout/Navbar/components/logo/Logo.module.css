@@ -1,0 +1,9 @@
+.logoDiv {
+	display: flex;
+	align-items: center;
+}
+
+.logoImg {
+	height: 60px;
+	width: auto;
+}

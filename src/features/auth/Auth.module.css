@@ -1,0 +1,120 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 80vh;
+	padding: var(--space-md);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	padding: var(--space-lg);
+	border-radius: var(--radius-card);
+	box-shadow: var(--glass-shadow);
+	width: 100%;
+	max-width: 450px;
+	backdrop-filter: blur(12px);
+}
+
+.title {
+	text-align: center;
+	margin-bottom: var(--space-lg);
+	color: var(--color-text-primary);
+	font-size: 2rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+}
+
+.inputGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.label {
+	font-size: 0.85rem;
+	color: var(--color-text-secondary);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.input {
+	padding: 1rem 1.5rem;
+	border-radius: var(--radius-btn);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: rgba(255, 255, 255, 0.8);
+	color: var(--color-text-primary);
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	outline: none;
+	font-family: var(--font-body);
+}
+
+.input:focus {
+	border-color: var(--color-accent-green);
+	box-shadow: 0 0 0 4px rgba(162, 238, 141, 0.3);
+	background-color: #fff;
+}
+
+.button {
+	margin-top: var(--space-sm);
+	padding: 1rem;
+	background: var(--color-accent-dark);
+	color: white;
+	border: none;
+	border-radius: var(--radius-btn);
+	font-weight: 600;
+	letter-spacing: 1px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-size: 1rem;
+	text-transform: uppercase;
+}
+
+.button:hover {
+	background: #2d452d;
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(45, 69, 45, 0.3);
+}
+
+.footer {
+	margin-top: var(--space-lg);
+	text-align: center;
+	font-size: 0.95rem;
+	color: var(--color-text-secondary);
+}
+
+.link {
+	color: var(--color-accent-dark);
+	text-decoration: none;
+	font-weight: 700;
+	transition: color 0.2s;
+}
+
+.link:hover {
+	color: var(--color-accent-green);
+	text-decoration: underline;
+}
+
+.error {
+	background: rgba(239, 68, 68, 0.1);
+	color: #b91c1c;
+	padding: 1rem;
+	border-radius: var(--radius-sm);
+	text-align: center;
+	margin-bottom: var(--space-md);
+	border: 1px solid rgba(239, 68, 68, 0.2);
+}

@@ -1,0 +1,13 @@
+.nav {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 5rem;
+	height: 80px;
+}
+@media (max-width: 768px) {
+	.nav {
+		padding: 1rem;
+	}
+}
