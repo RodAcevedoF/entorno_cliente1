@@ -1,21 +1,18 @@
 import {
 	createContext,
 	useContext,
-	useEffect,
 	useState,
 	type FC,
 	type ReactNode,
 } from 'react';
-import { AuthService } from '@/api/services/auth.service';
 
 interface AuthContextType {
 	isAuthenticated: boolean;
-	login: (username: string, pass: string) => Promise<void>;
-	register: (username: string, pass: string) => Promise<void>;
-	logout: () => Promise<void>;
+	setSession: (user: any) => void;
+	clearSession: () => void;
 	loading: boolean;
 	userRole?: 'admin' | 'user' | 'guest';
-    username?: string;
+	username?: string;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -30,80 +27,39 @@ export const useAuth = () => {
 	return context;
 };
 
-const USER_STORAGE_KEY = 'valenti_user';
+interface AuthProviderProps {
+    children: ReactNode;
+    defaultUser?: any;
+}
 
-export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [userRole, setUserRole] = useState<'admin' | 'user' | 'guest'>('guest');
-    const [username, setUsername] = useState<string | undefined>(undefined);
-    const [loading, setLoading] = useState(true);
+export const AuthProvider: FC<AuthProviderProps> = ({ children, defaultUser }) => {
+	const [isAuthenticated, setIsAuthenticated] = useState(!!defaultUser);
+	const [userRole, setUserRole] = useState<'admin' | 'user' | 'guest'>(defaultUser?.role || 'guest');
+	const [username, setUsername] = useState<string | undefined>(defaultUser?.username);
+	const loading = false;
 
-	useEffect(() => {
-        // Check local storage on mount to persist session across refreshes
-        const storedUser = localStorage.getItem(USER_STORAGE_KEY);
-        if (storedUser) {
-            try {
-                const user = JSON.parse(storedUser);
-                setIsAuthenticated(true);
-                setUserRole(user.role || 'user');
-                setUsername(user.username);
-            } catch (e) {
-                console.error("Failed to parse stored user", e);
-                localStorage.removeItem(USER_STORAGE_KEY);
-            }
-        }
-        setLoading(false);
-	}, []);
-
-	const login = async (u: string, p: string) => {
-		try {
-            // REAL CALL: Checks against data.json
-			const user = await AuthService.login(u, p);
-            
-            // Save session to local storage (so refresh doesn't logout)
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
-            
-			setIsAuthenticated(true);
-			setUserRole(user.role || 'user');
-            setUsername(user.username);
-		} catch (e) {
-			console.error('Login failed', e);
-			throw e;
-		}
+	const setSession = (user: any) => {
+		setIsAuthenticated(true);
+		setUserRole(user.role || 'user');
+		setUsername(user.username);
 	};
 
-    const register = async (u: string, p: string) => {
-        try {
-            // REAL CALL: Writes to data.json
-            const user = await AuthService.register(u, p);
-
-            // Auto login after register
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
-            
-            setIsAuthenticated(true);
-            setUserRole(user.role || 'user');
-            setUsername(user.username);
-        } catch (e) {
-            console.error('Register failed', e);
-            throw e;
-        }
-    }
-
-	const logout = async () => {
-		try {
-			await AuthService.logout();
-            localStorage.removeItem(USER_STORAGE_KEY);
-			setIsAuthenticated(false);
-			setUserRole('guest');
-            setUsername(undefined);
-		} catch (e) {
-			console.error('Logout failed', e);
-		}
+	const clearSession = () => {
+		setIsAuthenticated(false);
+		setUserRole('guest');
+		setUsername(undefined);
 	};
 
 	return (
 		<AuthContext.Provider
-			value={{ isAuthenticated, login, register, logout, loading, userRole, username }}>
+			value={{
+				isAuthenticated,
+				setSession,
+				clearSession,
+				loading,
+				userRole,
+				username,
+			}}>
 			{children}
 		</AuthContext.Provider>
 	);

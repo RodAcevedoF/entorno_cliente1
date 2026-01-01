@@ -1,15 +1,26 @@
 import { useAuth } from '@/common/contexts/AuthContext/AuthContext';
+import { AuthService } from '@/api/services/auth.service';
 import { useNavigate } from 'react-router';
 import styles from './Profile.module.css';
 import { useState } from 'react';
 
 const Profile = () => {
-	const { username, logout, isAuthenticated } = useAuth();
+	const { username, clearSession, isAuthenticated } = useAuth();
 	const navigate = useNavigate();
 
 	// Mock settings state
 	const [notifications, setNotifications] = useState(true);
 	const [newsletter, setNewsletter] = useState(true);
+
+	const handleLogout = async () => {
+		try {
+			await AuthService.logout();
+			clearSession();
+			navigate('/');
+		} catch (error) {
+			console.error('Logout failed', error);
+		}
+	};
 
 	if (!isAuthenticated) {
 		navigate('/login');
@@ -51,10 +62,7 @@ const Profile = () => {
 			<div className={styles.section}>
 				<button
 					className={styles.logoutBtn}
-					onClick={() => {
-						logout();
-						navigate('/');
-					}}>
+					onClick={handleLogout}>
 					Sign Out
 				</button>
 			</div>

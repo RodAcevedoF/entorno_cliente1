@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import useFetch from '@/common/hooks/useFetch';
+import useQuery from '@/common/hooks/useQuery';
 import { SessionsService } from '@/api/services/sessions.service';
 import { SessionCard } from './components/SessionCard';
 import styles from './Session.module.css';
 
 const Sessions = () => {
-    const { data: sessions, isLoading, error } = useFetch(SessionsService.getSessions);
+    const { data: sessions, isLoading, error } = useQuery(SessionsService.getSessions);
     const [searchTerm, setSearchTerm] = useState('');
 
     if (isLoading) return <div className={styles.loading}>Accessing the Akashic Records...</div>;

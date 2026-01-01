@@ -1,45 +1,86 @@
-import api from '@/api/lib/api';
+import { ValidationError } from '@/common/errors/errors.app';
+import api from '@/lib/api';
+import { comparePassword, hashPassword } from '@/lib/utils/encryption';
+import {
+	validatePassword,
+	type PasswordValidationResult,
+} from '@/lib/utils/validatePassword';
+import type { User, UserDTO } from '@/types/types.app';
+import { v4 as uuidv4 } from 'uuid';
 
-// We use the standard 'users' resource from json-server
 export const AUTH_ENDPOINTS = {
 	USERS: '/users',
 };
 
+const USER_STORAGE_KEY = 'valenti_user';
+
 export const AuthService = {
-	// Check if a user exists with these credentials
-	login: async (username: string, password: string): Promise<any> => {
-		// json-server allows filtering: /users?username=x&password=y
-		const response = await api.get(
-			`${AUTH_ENDPOINTS.USERS}?username=${username}&password=${password}`,
-		);
-		const users = response.data;
-
-		if (users.length === 0) {
-			throw new Error('Invalid credentials');
-		}
-		return users[0];
-	},
-
-	// Save a new user to data.json
-	register: async (username: string, password: string): Promise<any> => {
-		// First check if user already exists
-		const check = await api.get(`${AUTH_ENDPOINTS.USERS}?username=${username}`);
-		if (check.data.length > 0) {
-			throw new Error('Username already exists');
-		}
-
-		// Create new user
-		const response = await api.post(AUTH_ENDPOINTS.USERS, {
-			username,
-			password,
-			role: 'user', // Default role
-			createdAt: new Date().toISOString(),
-		});
+	getUserFromApi: async (id: string): Promise<any> => {
+		const response = await api.get(`${AUTH_ENDPOINTS.USERS}/${id}`);
 		return response.data;
 	},
 
+	getUserByEmail: async (email: string): Promise<User | undefined> => {
+		const response = await api.get(AUTH_ENDPOINTS.USERS, { params: { email } });
+		return response.data[0];
+	},
+	saveUserToStorage: (user: any) => {
+		localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+	},
+
+	removeUserFromStorage: () => {
+		localStorage.removeItem(USER_STORAGE_KEY);
+	},
+
+	login: async (u: UserDTO): Promise<User> => {
+		if (!u.email || !u.password) {
+			throw new Error('Email and password are required');
+		}
+		const user = await AuthService.getUserByEmail(u.email);
+		if (!user) {
+			throw new Error('Invalid credentials');
+		}
+		const isMatch = await comparePassword(u.password, user.password);
+		if (!isMatch) {
+			throw new Error('Invalid credentials');
+		}
+
+		AuthService.saveUserToStorage(user);
+		return user;
+	},
+
+	register: async (userData: UserDTO): Promise<User> => {
+		try {
+			const check = await api.get(
+				`${AUTH_ENDPOINTS.USERS}?email=${userData.email}`,
+			);
+			if (check.data.length > 0) {
+				throw new ValidationError('Email already exists');
+			}
+			const validatedPassword: PasswordValidationResult =
+				validatePassword(userData);
+			if (!validatedPassword.valid)
+				throw new ValidationError(validatedPassword.messages);
+
+			const response = await api.post(AUTH_ENDPOINTS.USERS, {
+				id: uuidv4(),
+				username: userData?.username,
+				password: await hashPassword(userData?.password),
+				role: 'user',
+				createdAt: new Date().toISOString(),
+				email: userData?.email,
+				themePreference: 'light',
+			});
+
+			const user = response.data;
+			return user;
+		} catch (error) {
+			throw error;
+		}
+	},
+
 	logout: async (): Promise<void> => {
-		// No server-side logout needed for json-server (stateless)
+		AuthService.removeUserFromStorage();
 		return Promise.resolve();
 	},
 };
