@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 const server = jsonServer.create();
-const filePath = path.join(process.cwd(), 'data', 'data.json');
+const filePath = path.join(__dirname, 'data.json');
 const data = fs.readFileSync(filePath, "utf-8");
 const db = JSON.parse(data);
 const router = jsonServer.router(db);

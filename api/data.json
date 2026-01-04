@@ -10,7 +10,7 @@
       "instructor": "Maria Valenti",
       "description": "Embark on a transformative journey to discover your authentic self through guided meditation and breathwork.",
       "maxParticipants": 15,
-      "image": "/src/assets/sessions/inner_11zon.webp"
+      "image": "/assets/sessions/inner_11zon.webp"
     },
     {
       "id": "2",
@@ -22,7 +22,7 @@
       "instructor": "Carlos Mendez",
       "description": "Advanced meditation techniques to elevate consciousness and unlock deeper states of awareness.",
       "maxParticipants": 12,
-      "image": "/src/assets/sessions/awakening_11zon.webp"
+      "image": "/assets/sessions/awakening_11zon.webp"
     },
     {
       "id": "3",
@@ -34,7 +34,7 @@
       "instructor": "Sofia Ramirez",
       "description": "Explore the highest realms of consciousness and connect with your infinite potential.",
       "maxParticipants": 10,
-      "image": "/src/assets/sessions/supra_11zon.webp"
+      "image": "/assets/sessions/supra_11zon.webp"
     },
     {
       "id": "4",
@@ -46,7 +46,7 @@
       "instructor": "Luna Torres",
       "description": "Balance and align your seven chakras through sound healing, visualization, and energy techniques.",
       "maxParticipants": 20,
-      "image": "/src/assets/sessions/chakra_11zon.webp"
+      "image": "/assets/sessions/chakra_11zon.webp"
     },
     {
       "id": "5",
@@ -58,7 +58,7 @@
       "instructor": "David Suarez",
       "description": "Master the art of lucid dreaming and explore the boundless landscape of your subconscious mind.",
       "maxParticipants": 15,
-      "image": "/src/assets/sessions/lucid.webp"
+      "image": "/assets/sessions/lucid.webp"
     },
     {
       "id": "6",
@@ -70,7 +70,7 @@
       "instructor": "Maria Valenti",
       "description": "Experience profound healing through quantum consciousness techniques and energy restoration.",
       "maxParticipants": 8,
-      "image": "/src/assets/sessions/quantum.webp"
+      "image": "/assets/sessions/quantum.webp"
     },
     {
       "id": "7",
@@ -82,7 +82,7 @@
       "instructor": "Ana Silva",
       "description": "Learn foundational mindfulness practices to reduce stress and cultivate present-moment awareness.",
       "maxParticipants": 25,
-      "image": "/src/assets/sessions/mindfulness.webp"
+      "image": "/assets/sessions/mindfulness.webp"
     },
     {
       "id": "8",
@@ -94,7 +94,7 @@
       "instructor": "Carlos Mendez",
       "description": "Guided journey into astral projection and out-of-body experiences with safety protocols.",
       "maxParticipants": 10,
-      "image": "/src/assets/sessions/astral.webp"
+      "image": "/assets/sessions/astral.webp"
     },
     {
       "id": "9",
@@ -106,7 +106,7 @@
       "instructor": "Luna Torres",
       "description": "Immerse yourself in healing vibrations from crystal bowls, gongs, and ancient instruments.",
       "maxParticipants": 30,
-      "image": "/src/assets/sessions/sound.webp"
+      "image": "/assets/sessions/sound.webp"
     },
     {
       "id": "10",
@@ -118,7 +118,7 @@
       "instructor": "Sofia Ramirez",
       "description": "Powerful breathwork techniques to release trauma, expand consciousness, and revitalize your being.",
       "maxParticipants": 18,
-      "image": "/src/assets/sessions/breath.webp"
+      "image": "/assets/sessions/breath.webp"
     },
     {
       "id": "11",
@@ -130,7 +130,7 @@
       "instructor": "David Suarez",
       "description": "Journey through time to explore past incarnations and unlock ancient wisdom for present healing.",
       "maxParticipants": 6,
-      "image": "/src/assets/sessions/pastlife.webp"
+      "image": "/assets/sessions/pastlife.webp"
     },
     {
       "id": "12",
@@ -142,7 +142,7 @@
       "instructor": "Ana Silva",
       "description": "Safely awaken your kundalini energy through yoga, breathwork, and guided meditation practices.",
       "maxParticipants": 12,
-      "image": "/src/assets/sessions/kundalini.webp"
+      "image": "/assets/sessions/kundalini.webp"
     }
   ],
   "users": [

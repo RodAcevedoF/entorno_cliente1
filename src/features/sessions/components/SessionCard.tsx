@@ -29,7 +29,7 @@ export const SessionCard = ({
 					alt={session.name}
 					className={styles.image}
 					onError={(e) => {
-						(e.target as HTMLImageElement).src = '/src/assets/home_01.webp';
+						(e.target as HTMLImageElement).src = '/assets/sessions/inner_11zon.webp';
 					}}
 				/>
 				<span className={styles.category}>
