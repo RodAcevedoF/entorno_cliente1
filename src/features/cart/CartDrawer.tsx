@@ -15,6 +15,7 @@ export const CartDrawer = () => {
 		isCartOpen,
 		closeCart,
 		items,
+		setItems,
 		removeFromCart: removeUI,
 		clearCart: clearUI,
 		total,
@@ -58,9 +59,7 @@ export const CartDrawer = () => {
 		{ userId: string; sessionId: string }
 	>(CartService.removeItem, {
 		onSuccess: (updatedCart) => {
-			// We could sync with updatedCart.items here if we had setItems exposed or wanted to rely on backend
-			// For now, UI update is handled in handleRemoveItem for responsiveness,
-			// or we could rely on the fact that removeUI was called.
+			setItems(updatedCart.items);
 		},
 	});
 
