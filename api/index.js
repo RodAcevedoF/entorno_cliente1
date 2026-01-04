@@ -1,16 +1,21 @@
-import jsonServer from 'json-server';
+import { createApp } from 'json-server/lib/app.js';
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
-const db = require('./data.json');
-const server = jsonServer.create();
-const router = jsonServer.router(db);
-const middlewares = jsonServer.defaults();
+const data = require('./data.json');
 
-server.use(middlewares);
-server.use(jsonServer.rewriter({
-    '/api/*': '/$1'
-}));
-server.use(router);
+// Mock LowDB adapter for read-only/in-memory usage
+const db = {
+    data: data,
+    write: async () => { } // No-op for read-only or in-memory updates
+};
 
-export default server;
+const app = createApp(db);
+
+export default (req, res) => {
+    // Strip /api prefix
+    req.url = req.url.replace(/^\/api/, '');
+    if (req.url === '') req.url = '/';
+    
+    return app.handler(req, res);
+};
