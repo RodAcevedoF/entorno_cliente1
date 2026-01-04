@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+# Valenti Dreams 🌙
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Valenti Dreams is a modern, interactive web application designed for spiritual exploration through guided sessions. Built with React and optimized for performance using Bun, it offers a seamless and immersive experience for travelers seeking supra-consciousness.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Immersive Home Page**: Dynamic animations and a modern Hero section.
+- **Session Gallery**: Explore spiritual journeys with elegant glassmorphic cards and live availability.
+- **Interactive Cart**: Sidebar drawer for managing your selected sessions before checkout.
+- **User Dashboard**: Secure member area to manage spiritual history and notification preferences.
+- **Responsive Design**: Fully optimized for mobile devices with fluid scroll-snapping interactions.
+- **Robust Testing**: Comprehensive suite using Bun's native test runner for high reliability.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Frontend**: React 19, TypeScript, CSS Modules.
+- **Icons**: Lucide React.
+- **Tooling**: Vite, Bun (Runtime & Test Runner).
+- **Backend**: JSON Server (Fake API for prototyping).
+- **Routing**: React Router 7.
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+Make sure you have [Bun](https://bun.sh/) installed on your machine.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Development
+Start both the client and the fake backend concurrently:
+```bash
+bun run dev
+```
+- Client: `http://localhost:5173`
+- API Server: `http://localhost:3000`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Testing
+Run the test suite using Bun's native runner:
+```bash
+bun test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# Valenti Dreams 🌙 (Español)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Valenti Dreams es una aplicación web moderna e interactiva diseñada para la exploración espiritual a través de sesiones guiadas. Construida con React y optimizada para el rendimiento mediante Bun, ofrece una experiencia fluida e inmersiva para viajeros en busca de la supraconciencia.
+
+## ✨ Características
+
+- **Página de Inicio Inmersiva**: Animaciones dinámicas y una sección Hero moderna.
+- **Galería de Sesiones**: Explora viajes espirituales con elegantes tarjetas "glassmorphic" y disponibilidad en tiempo real.
+- **Carrito Interactivo**: Cajón lateral para gestionar tus sesiones seleccionadas antes del pago.
+- **Panel de Usuario**: Área de miembros segura para gestionar el historial espiritual y las preferencias de notificación.
+- **Diseño Responsivo**: Totalmente optimizado para dispositivos móviles con interacciones fluidas de "scroll-snapping".
+- **Pruebas Robustas**: Suite completa utilizando el test runner nativo de Bun para una alta fiabilidad.
+
+## 🛠️ Tecnologías
+
+- **Frontend**: React 19, TypeScript, CSS Modules.
+- **Iconos**: Lucide React.
+- **Herramientas**: Vite, Bun (Runtime y Test Runner).
+- **Backend**: JSON Server (API simulada para prototipado).
+- **Enrutamiento**: React Router 7.
+
+## 🚀 Inicio Rápido
+
+### Requisitos Previos
+Asegúrate de tener [Bun](https://bun.sh/) instalado en tu equipo.
+
+### Instalación
+1. Clona el repositorio
+2. Instala las dependencias:
+   ```bash
+   bun install
+   ```
+
+### Desarrollo
+Inicia el cliente y el backend simulado de forma simultánea:
+```bash
+bun run dev
+```
+- Cliente: `http://localhost:5173`
+- Servidor API: `http://localhost:3000`
+
+### Pruebas
+Ejecuta la suite de pruebas usando el corredor nativo de Bun:
+```bash
+bun test
 ```
