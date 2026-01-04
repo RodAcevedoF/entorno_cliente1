@@ -5,28 +5,38 @@
 	justify-content: center;
 	min-height: 80vh;
 	padding: var(--space-md);
+	background: radial-gradient(
+		circle at center,
+		rgba(56, 188, 105, 0.05) 0%,
+		transparent 70%
+	);
 }
 
 .card {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background: var(--glass-bg);
-	border: 1px solid var(--glass-border);
-	padding: var(--space-lg);
-	border-radius: var(--radius-card);
-	box-shadow: var(--glass-shadow);
 	width: 100%;
-	max-width: 450px;
-	backdrop-filter: blur(12px);
+	max-width: 420px;
+	padding: var(--space-xl);
+	border-radius: var(--radius-lg);
+	
+	/* Glassmorphism */
+	background: rgba(27, 46, 33, 0.6);
+	backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+	
+	animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .title {
+	font-family: var(--font-heading);
+	font-size: 2.25rem;
+	font-weight: 500;
 	text-align: center;
 	margin-bottom: var(--space-lg);
 	color: var(--color-text-primary);
-	font-size: 2rem;
+	text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .form {
@@ -39,56 +49,120 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	align-items: center;
-	justify-content: center;
 	position: relative;
+	width: 100%;
 }
 
 .label {
-	font-size: 0.85rem;
+	font-size: 0.875rem;
 	color: var(--color-text-secondary);
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	font-weight: 500;
+	margin-left: 4px;
+	transition: color 0.3s;
+}
+
+.inputGroup:focus-within .label {
+	color: var(--color-accent-primary);
 }
 
 .input {
-	padding: 1rem 1.5rem;
-	border-radius: var(--radius-btn);
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	background-color: rgba(255, 255, 255, 0.8);
-	color: var(--color-text-inverse);
+	width: 100%;
+	padding: 0.875rem 1rem;
+	border-radius: var(--radius-md);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background-color: rgba(0, 0, 0, 0.2);
+	color: var(--color-text-primary);
+	font-family: var(--font-body);
 	font-size: 1rem;
 	transition: all 0.3s ease;
-	outline: none;
-	font-family: var(--font-body);
+}
+
+/* Make space for the eye icon on password fields */
+.input[type='password'],
+.input[type='text'] + .passwordToggle { 
+    /* This selector is tricky because types change dynamically. 
+       Ideally, we add a class to password inputs or their containers.
+       For now, we can add padding-right to all inputs that might have icons 
+       or rely on the fact that they are just inputs. 
+       Let's just apply to all inputs to be safe or target specifically if possible.
+    */
+}
+
+/* Better approach: The input inside a group with a button */
+.inputGroup button + .input, /* This won't work because button is after input in DOM */
+.input:has(+ .passwordToggle) { /* :has support is good now */
+    padding-right: 3rem; 
+}
+/* Fallback for older browsers if needed, but modern browsers support :has */
+.input {
+    padding-right: 1rem;
+}
+/* Specific override for inputs followed by the toggle btn in DOM order */
+.input:not(:placeholder-shown) {
+   /* just to trigger something if needed */
+}
+
+
+.input::placeholder {
+	color: rgba(255, 255, 255, 0.2);
 }
 
 .input:focus {
-	border-color: var(--color-accent-green);
-	box-shadow: 0 0 0 4px rgba(162, 238, 141, 0.3);
-	background-color: #fff;
+	outline: none;
+	border-color: var(--color-accent-primary);
+	background-color: rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 0 4px rgba(56, 188, 105, 0.15);
+}
+
+.passwordToggle {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	height: 3rem; /* Match approximate input height */
+    top: auto; /* reset */
+    bottom: 1px; /* visual alignment */
+	width: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: none;
+	color: var(--color-text-secondary);
+	cursor: pointer;
+	transition: color 0.2s;
+    z-index: 2;
+}
+
+.passwordToggle:hover {
+	color: var(--color-text-primary);
 }
 
 .button {
 	margin-top: var(--space-sm);
 	padding: 1rem;
-	background: var(--color-accent-dark);
-	color: white;
+	background: linear-gradient(135deg, var(--color-accent-dark), #0f391e);
+	color: #fff;
 	border: none;
-	border-radius: var(--radius-btn);
+	border-radius: var(--radius-md);
 	font-weight: 600;
-	letter-spacing: 1px;
+	font-size: 1rem;
 	cursor: pointer;
 	transition: all 0.3s ease;
-	font-size: 1rem;
 	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.button:hover {
-	background: #2d452d;
+.button:hover:not(:disabled) {
 	transform: translateY(-2px);
-	box-shadow: 0 5px 15px rgba(45, 69, 45, 0.3);
+	box-shadow: 0 6px 20px rgba(56, 188, 105, 0.25);
+	background: linear-gradient(135deg, #0a6629, #144d28);
+}
+
+.button:disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+	transform: none;
 }
 
 .footer {
@@ -99,37 +173,74 @@
 }
 
 .link {
-	color: var(--color-accent-dark);
+	color: var(--color-accent-primary);
 	text-decoration: none;
-	font-weight: 700;
-	transition: color 0.2s;
+	font-weight: 600;
+	margin-left: 0.25rem;
+	position: relative;
 }
 
-.link:hover {
-	color: var(--color-accent-green);
-	text-decoration: underline;
+.link::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	bottom: -2px;
+	left: 0;
+	background-color: var(--color-accent-primary);
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	transition: transform 0.3s ease-out;
+}
+
+.link:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
 }
 
 .error {
-	background: rgba(239, 68, 68, 0.1);
-	color: #b91c1c;
-	padding: 1rem;
+	background: rgba(239, 68, 68, 0.15);
+	border: 1px solid rgba(239, 68, 68, 0.3);
+	color: #fca5a5;
+	padding: 0.75rem;
 	border-radius: var(--radius-sm);
+	font-size: 0.9rem;
 	text-align: center;
 	margin-bottom: var(--space-md);
-	border: 1px solid rgba(239, 68, 68, 0.2);
+	animation: shake 0.4s ease-in-out;
 }
 
 .error ul {
-	list-style: none;
+	list-style-position: inside;
+	padding: 0;
+	margin: 0;
 }
 
-.passwordToggle {
-	position: absolute;
-	right: 1rem;
-	top: 51.5%;
-	background: none;
-	border: none;
-	cursor: pointer;
-	color: var(--color-bg-primary);
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-4px); }
+	75% { transform: translateX(4px); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+	.card {
+		padding: var(--space-md);
+		background: rgba(27, 46, 33, 0.85); /* More opaque on mobile */
+	}
+	
+	.title {
+		font-size: 1.75rem;
+	}
 }

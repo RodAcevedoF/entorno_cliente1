@@ -147,4 +147,8 @@
 		width: 100%;
 		max-width: 280px;
 	}
+	.actions {
+		gap: var(--space-sm);
+		margin-top: 0;
+	}
 }
