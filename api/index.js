@@ -1,11 +1,9 @@
 import jsonServer from 'json-server';
-import path from 'path';
-import fs from 'fs';
+import { createRequire } from 'module';
 
+const require = createRequire(import.meta.url);
+const db = require('./data.json');
 const server = jsonServer.create();
-const filePath = path.join(__dirname, 'data.json');
-const data = fs.readFileSync(filePath, "utf-8");
-const db = JSON.parse(data);
 const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 
