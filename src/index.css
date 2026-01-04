@@ -1,11 +1,9 @@
 :root {
-	/* Brand Colors - Mystical/Spiritual Theme */
-	--color-bg-primary: #050d08; /* Deep dark forest green */
-	--color-bg-secondary: #0f1f14; /* Slightly lighter for cards */
-	--color-bg-tertiary: #1b2e21; /* Inputs/Hover states */
-
-	--color-accent-primary: #38bc69; /* Vital Green */
-	--color-accent-secondary: #ece8cd; /* Spiritual Beige */
+	--color-bg-primary: #050d08;
+	--color-bg-secondary: #0f1f14;
+	--color-bg-tertiary: #1b2e21;
+	--color-accent-primary: #38bc69;
+	--color-accent-secondary: #ece8cd;
 	--color-accent-glow: rgba(56, 188, 105, 0.5);
 	--color-accent-green: #38bc69;
 	--color-accent-dark: #055121;
@@ -35,7 +33,7 @@
 
 	/* Typography */
 	--font-body: 'Inter', system-ui, -apple-system, sans-serif;
-	--font-heading: 'Playfair Display', Georgia, serif; /* Elegant serif for headings */
+	--font-heading: 'Playfair Display', Georgia, serif;
 }
 
 * {
@@ -82,6 +80,12 @@ main {
 	animation: fadeIn 0.5s ease-out;
 }
 
+@media (max-width: 768px) {
+	main {
+		padding: var(--space-sm);
+	}
+}
+
 footer {
 	width: 100%;
 	padding: var(--space-lg);
@@ -115,7 +119,6 @@ button {
 	}
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
 	width: 8px;
 }

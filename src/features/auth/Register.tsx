@@ -6,12 +6,14 @@ import styles from './Auth.module.css';
 import useMutation from '@/common/hooks/useMutation';
 import type { UserDTO, User } from '@/types/types.app';
 import { ValidationError } from '@/common/errors/errors.app';
+import ShowPasswordBtn from './ShowPasswordBtn';
 
 const Register = () => {
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
 	const { setSession } = useAuth();
 	const navigate = useNavigate();
 
@@ -91,12 +93,17 @@ const Register = () => {
 							Password
 						</label>
 						<input
-							type='password'
+							type={showPassword ? 'text' : 'password'}
 							id='password'
 							className={styles.input}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
+						/>
+						<ShowPasswordBtn
+							cssClass={styles.passwordToggle}
+							isShowing={showPassword}
+							parentMethod={() => setShowPassword(!showPassword)}
 						/>
 					</div>
 					<div className={styles.inputGroup}>
@@ -104,12 +111,17 @@ const Register = () => {
 							Confirm Password
 						</label>
 						<input
-							type='password'
+							type={showPassword ? 'text' : 'password'}
 							id='confirmPassword'
 							className={styles.input}
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 							required
+						/>
+						<ShowPasswordBtn
+							cssClass={styles.passwordToggle}
+							isShowing={showPassword}
+							parentMethod={() => setShowPassword(!showPassword)}
 						/>
 					</div>
 					<button type='submit' disabled={isLoading} className={styles.button}>

@@ -23,6 +23,16 @@ function useMutation<T, V>(
 	const [error, setError] = useState<Error | null>(null);
 	const isMountedRef = useRef(true);
 
+	const mutatorRef = useRef(mutator);
+	const onSuccessRef = useRef(onSuccess);
+	const onErrorRef = useRef(onError);
+
+	useEffect(() => {
+		mutatorRef.current = mutator;
+		onSuccessRef.current = onSuccess;
+		onErrorRef.current = onError;
+	});
+
 	useEffect(() => {
 		isMountedRef.current = true;
 		return () => {
@@ -35,17 +45,17 @@ function useMutation<T, V>(
 			setIsLoading(true);
 			setError(null);
 			try {
-				const result = await mutator(vars);
+				const result = await mutatorRef.current(vars);
 				if (isMountedRef.current) {
 					setData(result);
-					onSuccess?.(result);
+					onSuccessRef.current?.(result);
 				}
 				return result;
 			} catch (err) {
 				const nextError = err as Error;
 				if (isMountedRef.current) {
 					setError(nextError);
-					onError?.(nextError);
+					onErrorRef.current?.(nextError);
 				}
 				throw nextError;
 			} finally {
@@ -54,7 +64,7 @@ function useMutation<T, V>(
 				}
 			}
 		},
-		[mutator, onSuccess, onError],
+		[],
 	);
 
 	const reset = useCallback(() => {

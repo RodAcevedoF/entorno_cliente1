@@ -7,3 +7,9 @@
 	height: 60px;
 	width: auto;
 }
+
+@media (max-width: 768px) {
+	.logoImg {
+		height: 40px;
+	}
+}

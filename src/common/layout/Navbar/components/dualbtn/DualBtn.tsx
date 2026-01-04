@@ -6,58 +6,52 @@ import useMutation from '@/common/hooks/useMutation';
 import styles from './DualBtn.module.css';
 
 export const DualBtn = () => {
-    const { isAuthenticated, clearSession, username } = useAuth();
-    const { toggleCart, count } = useCart();
-    const navigate = useNavigate();
+	const { clearSession, userContext } = useAuth();
+	const { toggleCart, count } = useCart();
+	const navigate = useNavigate();
 
-    const { mutate: logout, isLoading } = useMutation<void, void>(
-        AuthService.logout,
-        {
-            onSuccess: () => {
-                clearSession();
-                navigate('/');
-            },
-            onError: (error) => {
-                console.error('Logout failed', error);
-            }
-        }
-    );
+	const { mutate: logout, isLoading } = useMutation<void, string>(
+		AuthService.logout,
+		{
+			onSuccess: () => {
+				clearSession();
+				navigate('/');
+			},
+			onError: (error) => {
+				console.error('Logout failed', error);
+			},
+		},
+	);
 
-    return (
-        <div className={styles.container}>
-            <button 
-                className={styles.btnSecondary} 
-                onClick={toggleCart}
-            >
-                Cart {count > 0 && `(${count})`}
-            </button>
-            
-            {isAuthenticated ? (
-                <>
-                    <button 
-                        className={styles.btnPrimary} 
-                        onClick={() => navigate('/profile')}
-                    >
-                        {username || 'Profile'}
-                    </button>
-                    <button 
-                        className={styles.btnLogout} 
-                        onClick={() => logout()}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? '...' : 'Logout'}
-                    </button>
-                </>
-            ) : (
-                <button 
-                    className={styles.btnPrimary} 
-                    onClick={() => navigate('/login')}
-                >
-                    Login
-                </button>
-            )}
-        </div>
-    );
-}
+	return (
+		<div className={styles.container}>
+			<button className={styles.btnSecondary} onClick={toggleCart}>
+				Cart {count > 0 && `(${count})`}
+			</button>
+
+			{userContext.isAuthenticated ? (
+				<>
+					<button
+						className={styles.btnPrimary}
+						onClick={() => navigate('/profile')}>
+						{userContext.username || 'Profile'}
+					</button>
+					<button
+						className={styles.btnLogout}
+						onClick={() => userContext.id && logout(userContext.id)}
+						disabled={isLoading || !userContext.id}>
+						{isLoading ? '...' : 'Logout'}
+					</button>
+				</>
+			) : (
+				<button
+					className={styles.btnPrimary}
+					onClick={() => navigate('/login')}>
+					Login
+				</button>
+			)}
+		</div>
+	);
+};
 
 export default DualBtn;

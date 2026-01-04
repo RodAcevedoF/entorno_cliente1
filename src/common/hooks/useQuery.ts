@@ -25,27 +25,37 @@ function useQuery<T>(
 	const [error, setError] = useState<Error | null>(null);
 	const isMountedRef = useRef(true);
 
+	const fetcherRef = useRef(fetcher);
+	const onSuccessRef = useRef(onSuccess);
+	const onErrorRef = useRef(onError);
+
+	useEffect(() => {
+		fetcherRef.current = fetcher;
+		onSuccessRef.current = onSuccess;
+		onErrorRef.current = onError;
+	});
+
 	const refetch = useCallback(async () => {
 		setIsLoading(true);
 		setError(null);
 		try {
-			const result = await fetcher();
+			const result = await fetcherRef.current();
 			if (isMountedRef.current) {
 				setData(result);
-				onSuccess?.(result);
+				onSuccessRef.current?.(result);
 			}
 		} catch (err) {
 			const nextError = err as Error;
 			if (isMountedRef.current) {
 				setError(nextError);
-				onError?.(nextError);
+				onErrorRef.current?.(nextError);
 			}
 		} finally {
 			if (isMountedRef.current) {
 				setIsLoading(false);
 			}
 		}
-	}, [fetcher, onSuccess, onError, ...deps]);
+	}, [...deps]);
 
 	useEffect(() => {
 		isMountedRef.current = true;

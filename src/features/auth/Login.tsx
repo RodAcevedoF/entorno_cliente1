@@ -5,10 +5,12 @@ import { useNavigate, Link } from 'react-router';
 import styles from './Auth.module.css';
 import useMutation from '@/common/hooks/useMutation';
 import type { User, UserDTO } from '@/types/types.app';
+import ShowPasswordBtn from './ShowPasswordBtn';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
 	const { setSession } = useAuth();
 	const navigate = useNavigate();
 
@@ -60,12 +62,17 @@ const Login = () => {
 							Password
 						</label>
 						<input
-							type='password'
+							type={showPassword ? 'text' : 'password'}
 							id='password'
 							className={styles.input}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
+						/>
+						<ShowPasswordBtn
+							cssClass={styles.passwordToggle}
+							isShowing={showPassword}
+							parentMethod={() => setShowPassword(!showPassword)}
 						/>
 					</div>
 					<button type='submit' className={styles.button} disabled={isLoading}>

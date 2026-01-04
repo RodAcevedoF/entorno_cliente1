@@ -1,54 +1,55 @@
 .dropdown {
-    position: absolute;
-    top: 100%; /* Directly below the navbar */
-    left: 0;
-    width: 100%;
-    background: rgba(5, 13, 8, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transform: translateY(-20px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
-    z-index: 99;
-    padding: var(--space-lg) 0;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	background: rgba(5, 13, 8, 0.95);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	transform: translateY(-20px);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease-in-out;
+	z-index: 99;
+	padding: var(--space-lg) 0;
 }
 
 .open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
+	transform: translateY(0);
+	opacity: 1;
+	visibility: visible;
 }
 
 .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-md);
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-md);
 }
 
 .item {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+	opacity: 0;
+	transform: translateY(-10px);
+	transition: all 0.3s ease;
 }
 
 .open .item {
-    opacity: 1;
-    transform: translateY(0);
+	opacity: 1;
+	transform: translateY(0);
 }
 
 .link {
-    text-decoration: none;
-    color: var(--color-text-secondary);
-    font-size: 1.5rem;
-    font-weight: 500;
-    transition: color 0.2s;
+	text-decoration: none;
+	color: var(--color-text-secondary);
+	font-size: 1.5rem;
+	font-weight: 500;
+	transition: color 0.2s;
 }
 
-.link:hover, .active {
-    color: var(--color-accent-primary);
+.link:hover,
+.active {
+	color: var(--color-accent-primary);
 }

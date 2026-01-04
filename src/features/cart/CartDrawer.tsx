@@ -2,12 +2,95 @@ import { useEffect } from 'react';
 import { useCart } from '@/common/contexts/CartContext/CartContext';
 import styles from './CartDrawer.module.css';
 import { createPortal } from 'react-dom';
+import { useAuth } from '@/common/contexts/AuthContext/AuthContext';
+import { useNavigate } from 'react-router';
+import { OrderService } from '@/api/services/order.service';
+import { CartService } from '@/api/services/cart.service';
+import useMutation from '@/common/hooks/useMutation';
+import type { Order, OrderDTO, Cart } from '@/types/types.app';
 
 export const CartDrawer = () => {
-	const { isCartOpen, closeCart, items, removeFromCart, clearCart, total } =
-		useCart();
+	const navigate = useNavigate();
+	const {
+		isCartOpen,
+		closeCart,
+		items,
+		removeFromCart: removeUI,
+		clearCart: clearUI,
+		total,
+	} = useCart();
+	const { userContext } = useAuth();
 
-	// Prevent body scroll when drawer is open
+	const handleNavigate = () => {
+		closeCart();
+		userContext.isAuthenticated ? navigate('/sessions') : navigate('/login');
+	};
+
+	const { mutate: clearCartAPI } = useMutation<Cart, { userId: string }>(
+		CartService.clearCart,
+		{
+			onSuccess: () => {
+				clearUI();
+			},
+		},
+	);
+
+	const { mutate: createOrder, isLoading } = useMutation<Order, OrderDTO>(
+		OrderService.createOrder,
+		{
+			onSuccess: () => {
+				if (userContext?.id) {
+					clearCartAPI({ userId: userContext.id });
+				} else {
+					clearUI();
+				}
+				closeCart();
+				navigate('/profile');
+			},
+			onError: (error) => {
+				console.error('Placing order failed', error);
+			},
+		},
+	);
+
+	const { mutate: removeItemAPI } = useMutation<
+		Cart,
+		{ userId: string; sessionId: string }
+	>(CartService.removeItem, {
+		onSuccess: (updatedCart) => {
+			// We could sync with updatedCart.items here if we had setItems exposed or wanted to rely on backend
+			// For now, UI update is handled in handleRemoveItem for responsiveness,
+			// or we could rely on the fact that removeUI was called.
+		},
+	});
+
+	const handleCheckout = () => {
+		if (!userContext?.id) {
+			navigate('/login');
+			return;
+		}
+		createOrder({
+			userId: userContext.id,
+			items,
+			total,
+		});
+	};
+
+	const handleRemoveItem = (sessionId: string) => {
+		removeUI(sessionId);
+		if (userContext?.id) {
+			removeItemAPI({ userId: userContext.id, sessionId });
+		}
+	};
+
+	const handleClearCart = () => {
+		if (userContext?.id) {
+			clearCartAPI({ userId: userContext.id });
+		} else {
+			clearUI();
+		}
+	};
+
 	useEffect(() => {
 		if (isCartOpen) {
 			document.body.style.overflow = 'hidden';
@@ -35,13 +118,15 @@ export const CartDrawer = () => {
 					{items.length === 0 ? (
 						<div className={styles.empty}>
 							<p>Your journey bag is empty.</p>
-							<button className={styles.startBtn} onClick={closeCart}>
-								Browse Sessions
+							<button className={styles.startBtn} onClick={handleNavigate}>
+								{userContext.isAuthenticated
+									? 'Browse Sessions'
+									: 'Login to Start'}
 							</button>
 						</div>
 					) : (
 						items.map((item) => (
-							<div key={item.id} className={styles.item}>
+							<div key={item.sessionId} className={styles.item}>
 								<div className={styles.itemInfo}>
 									<span className={styles.itemName}>{item.name}</span>
 									<span className={styles.itemPrice}>
@@ -54,7 +139,7 @@ export const CartDrawer = () => {
 									</span>
 									<button
 										className={styles.removeBtn}
-										onClick={() => removeFromCart(item.id)}>
+										onClick={() => handleRemoveItem(item.sessionId)}>
 										&times;
 									</button>
 								</div>
@@ -70,13 +155,14 @@ export const CartDrawer = () => {
 							<span className={styles.totalAmount}>${total}</span>
 						</div>
 						<div className={styles.actions}>
-							<button className={styles.clearBtn} onClick={clearCart}>
+							<button className={styles.clearBtn} onClick={handleClearCart}>
 								Clear
 							</button>
 							<button
 								className={styles.checkoutBtn}
-								onClick={() => console.log('Pending')}>
-								Proceed to Checkout
+								onClick={handleCheckout}
+								disabled={isLoading}>
+								{isLoading ? 'Processing...' : 'Proceed to Checkout'}
 							</button>
 						</div>
 					</div>

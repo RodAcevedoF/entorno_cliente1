@@ -10,7 +10,7 @@
       "instructor": "Maria Valenti",
       "description": "Embark on a transformative journey to discover your authentic self through guided meditation and breathwork.",
       "maxParticipants": 15,
-      "image": "inner-journey.jpg"
+      "image": "/src/assets/sessions/inner_11zon.webp"
     },
     {
       "id": "2",
@@ -22,7 +22,7 @@
       "instructor": "Carlos Mendez",
       "description": "Advanced meditation techniques to elevate consciousness and unlock deeper states of awareness.",
       "maxParticipants": 12,
-      "image": "awakening-meditation.jpg"
+      "image": "/src/assets/sessions/awakening_11zon.webp"
     },
     {
       "id": "3",
@@ -34,7 +34,7 @@
       "instructor": "Sofia Ramirez",
       "description": "Explore the highest realms of consciousness and connect with your infinite potential.",
       "maxParticipants": 10,
-      "image": "supra-conscious.jpg"
+      "image": "/src/assets/sessions/supra_11zon.webp"
     },
     {
       "id": "4",
@@ -46,7 +46,7 @@
       "instructor": "Luna Torres",
       "description": "Balance and align your seven chakras through sound healing, visualization, and energy techniques.",
       "maxParticipants": 20,
-      "image": "chakra-alignment.jpg"
+      "image": "/src/assets/sessions/chakra_11zon.webp"
     },
     {
       "id": "5",
@@ -58,7 +58,7 @@
       "instructor": "David Suarez",
       "description": "Master the art of lucid dreaming and explore the boundless landscape of your subconscious mind.",
       "maxParticipants": 15,
-      "image": "lucid-dreaming.jpg"
+      "image": "/src/assets/sessions/lucid.webp"
     },
     {
       "id": "6",
@@ -70,7 +70,7 @@
       "instructor": "Maria Valenti",
       "description": "Experience profound healing through quantum consciousness techniques and energy restoration.",
       "maxParticipants": 8,
-      "image": "quantum-healing.jpg"
+      "image": "/src/assets/sessions/quantum.webp"
     },
     {
       "id": "7",
@@ -82,7 +82,7 @@
       "instructor": "Ana Silva",
       "description": "Learn foundational mindfulness practices to reduce stress and cultivate present-moment awareness.",
       "maxParticipants": 25,
-      "image": "mindfulness-basics.jpg"
+      "image": "/src/assets/sessions/mindfulness.webp"
     },
     {
       "id": "8",
@@ -94,7 +94,7 @@
       "instructor": "Carlos Mendez",
       "description": "Guided journey into astral projection and out-of-body experiences with safety protocols.",
       "maxParticipants": 10,
-      "image": "astral-projection.jpg"
+      "image": "/src/assets/sessions/astral.webp"
     },
     {
       "id": "9",
@@ -106,7 +106,7 @@
       "instructor": "Luna Torres",
       "description": "Immerse yourself in healing vibrations from crystal bowls, gongs, and ancient instruments.",
       "maxParticipants": 30,
-      "image": "sound-bath.jpg"
+      "image": "/src/assets/sessions/sound.webp"
     },
     {
       "id": "10",
@@ -118,7 +118,7 @@
       "instructor": "Sofia Ramirez",
       "description": "Powerful breathwork techniques to release trauma, expand consciousness, and revitalize your being.",
       "maxParticipants": 18,
-      "image": "breathwork.jpg"
+      "image": "/src/assets/sessions/breath.webp"
     },
     {
       "id": "11",
@@ -130,7 +130,7 @@
       "instructor": "David Suarez",
       "description": "Journey through time to explore past incarnations and unlock ancient wisdom for present healing.",
       "maxParticipants": 6,
-      "image": "past-life.jpg"
+      "image": "/src/assets/sessions/pastlife.webp"
     },
     {
       "id": "12",
@@ -142,20 +142,67 @@
       "instructor": "Ana Silva",
       "description": "Safely awaken your kundalini energy through yoga, breathwork, and guided meditation practices.",
       "maxParticipants": 12,
-      "image": "kundalini.jpg"
+      "image": "/src/assets/sessions/kundalini.webp"
     }
   ],
   "users": [
     {
       "id": "d130e649-f708-40f0-885a-e1048f70443a",
-      "username": "rata",
+      "username": "r",
       "password": "$2b$10$v8TqQIy9VvRkuXwu1b5uZ.Aul9/A9rV3mXTmUrIhEMwNTc9DL8c1e",
       "role": "user",
       "createdAt": "2026-01-01T20:28:43.903Z",
       "email": "r@r.com",
-      "themePreference": "light"
+      "themePreference": "light",
+      "preferences": {
+        "notifications": true,
+        "newsletter": true
+      }
     }
   ],
-  "orders": [],
-  "cart": []
+  "orders": [
+    {
+      "id": "b80dc83c-f62b-414e-8643-426afcd9f18f",
+      "userId": "d130e649-f708-40f0-885a-e1048f70443a",
+      "items": [
+        {
+          "sessionId": "8",
+          "quantity": 1,
+          "name": "Astral Projection Experience",
+          "price": 220
+        }
+      ],
+      "total": 220,
+      "orderDate": "2026-01-04T16:41:38.610Z"
+    },
+    {
+      "id": "d7fe79be-4a9d-4168-baf6-6b5a59f80601",
+      "userId": "d130e649-f708-40f0-885a-e1048f70443a",
+      "items": [
+        {
+          "sessionId": "4",
+          "quantity": 1,
+          "name": "Chakra Alignment Journey",
+          "price": 85
+        }
+      ],
+      "total": 85,
+      "orderDate": "2026-01-04T19:53:42.517Z"
+    }
+  ],
+  "carts": [
+    {
+      "id": "c410",
+      "userId": "d130e649-f708-40f0-885a-e1048f70443a",
+      "items": [],
+      "createdAt": "2026-01-04T15:10:17.361Z"
+    }
+  ],
+  "user-sessions": [
+    {
+      "id": "1c06",
+      "userId": "d130e649-f708-40f0-885a-e1048f70443a",
+      "startedAt": "2026-01-03T18:01:40.495Z"
+    }
+  ]
 }

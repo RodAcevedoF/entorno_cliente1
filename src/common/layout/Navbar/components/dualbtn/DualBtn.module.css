@@ -23,7 +23,7 @@
 	padding: 0.5rem 1rem;
 	background: transparent;
 	color: var(--color-text-primary);
-	border: 1px solid rgba(44, 62, 44, 0.2);
+	border: 1px solid rgba(65, 101, 65, 0.904);
 	border-radius: var(--radius-sm);
 	cursor: pointer;
 	font-weight: 500;
@@ -37,11 +37,16 @@
 
 .btnLogout {
 	padding: 0.5rem 1rem;
-	background: transparent;
 	color: var(--color-text-secondary);
-	border: none;
 	cursor: pointer;
 	font-size: 0.9rem;
+	background: rgba(239, 68, 68, 0.1);
+	border: 1px solid rgba(239, 68, 68, 0.3);
+	color: #ef4444;
+	border-radius: var(--radius-sm);
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s;
 }
 
 .btnLogout:hover {

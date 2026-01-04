@@ -9,6 +9,7 @@ import { CartDrawer } from './features/cart/CartDrawer';
 import About from './features/about/About';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
+import Footer from './common/layout/Footer/Footer';
 
 function App() {
 	return (
@@ -42,9 +43,7 @@ function App() {
 					<Route path='*' element={<div>Not Found</div>} />
 				</Routes>
 			</main>
-			<footer>
-				<p>© {new Date().getFullYear()} Sueños Valenti. All rights reserved.</p>
-			</footer>
+			<Footer />
 		</>
 	);
 }

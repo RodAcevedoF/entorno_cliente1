@@ -1,31 +1,23 @@
+import type { CartItem } from '@/types/types.app';
 import {
 	createContext,
 	useContext,
-	useEffect,
 	useState,
 	type FC,
 	type ReactNode,
 } from 'react';
 
-export interface CartItem {
-	id: number;
-	name: string;
-	price: number;
-	image?: string;
-	quantity: number;
-}
-
 interface CartContextType {
 	items: CartItem[];
-	addToCart: (item: Omit<CartItem, 'quantity'>) => void;
-	removeFromCart: (id: number) => void;
-	clearCart: () => void;
+	setItems: (items: CartItem[]) => void;
 	total: number;
 	count: number;
-    isCartOpen: boolean;
-    toggleCart: () => void;
-    openCart: () => void;
-    closeCart: () => void;
+	isCartOpen: boolean;
+	toggleCart: () => void;
+	openCart: () => void;
+	closeCart: () => void;
+	removeFromCart: (sessionId: string) => void;
+	clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -38,50 +30,21 @@ export const useCart = () => {
 	return context;
 };
 
-const CART_STORAGE_KEY = 'valenti_cart';
-
 export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const [isCartOpen, setIsCartOpen] = useState(false);
-	const [items, setItems] = useState<CartItem[]>(() => {
-		try {
-			const stored = localStorage.getItem(CART_STORAGE_KEY);
-			return stored ? JSON.parse(stored) : [];
-		} catch (error) {
-			console.error('Failed to parse cart from localStorage', error);
-			return [];
-		}
-	});
+	const [isCartOpen, setIsCartOpen] = useState(false);
+	const [items, setItems] = useState<CartItem[]>([]);
 
-	useEffect(() => {
-		localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-	}, [items]);
+	const toggleCart = () => setIsCartOpen((prev) => !prev);
+	const openCart = () => setIsCartOpen(true);
+	const closeCart = () => setIsCartOpen(false);
 
-	const addToCart = (newItem: Omit<CartItem, 'quantity'>) => {
-		setItems((prev) => {
-			const existing = prev.find((item) => item.id === newItem.id);
-			if (existing) {
-				return prev.map((item) =>
-					item.id === newItem.id
-						? { ...item, quantity: item.quantity + 1 }
-						: item,
-				);
-			}
-			return [...prev, { ...newItem, quantity: 1 }];
-		});
-        setIsCartOpen(true); // Auto open when adding
-	};
-
-	const removeFromCart = (id: number) => {
-		setItems((prev) => prev.filter((item) => item.id !== id));
+	const removeFromCart = (sessionId: string) => {
+		setItems((prev) => prev.filter((item) => item.sessionId !== sessionId));
 	};
 
 	const clearCart = () => {
 		setItems([]);
 	};
-
-    const toggleCart = () => setIsCartOpen(prev => !prev);
-    const openCart = () => setIsCartOpen(true);
-    const closeCart = () => setIsCartOpen(false);
 
 	const total = items.reduce(
 		(sum, item) => sum + item.price * item.quantity,
@@ -91,18 +54,18 @@ export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 	return (
 		<CartContext.Provider
-			value={{ 
-                items, 
-                addToCart, 
-                removeFromCart, 
-                clearCart, 
-                total, 
-                count,
-                isCartOpen,
-                toggleCart,
-                openCart,
-                closeCart
-            }}>
+			value={{
+				items,
+				setItems,
+				total,
+				count,
+				isCartOpen,
+				toggleCart,
+				openCart,
+				closeCart,
+				removeFromCart,
+				clearCart,
+			}}>
 			{children}
 		</CartContext.Provider>
 	);

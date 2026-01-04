@@ -6,6 +6,10 @@ export interface User {
 	themePreference?: 'light' | 'dark';
 	createdAt: string;
 	role: 'user' | 'admin';
+	preferences?: {
+		notifications: boolean;
+		newsletter: boolean;
+	};
 }
 
 export interface UserDTO {
@@ -36,13 +40,38 @@ export interface AuthContextType {
 export interface Cart {
 	id: string;
 	userId: string;
-	items: Pick<Session, 'id'>[];
+	items: CartItem[];
 	createdAt: string;
 }
 
-export interface Orders {
-	status: 'pending' | 'completed' | 'canceled';
-	totalAmount: number;
+export interface Order {
+	id: string;
+	items: CartItem[];
+	total: number;
 	orderDate: string;
-	sessions: Session[];
+	userId: string;
+}
+
+export interface OrderDTO {
+	items: CartItem[];
+	total: number;
+	userId: string;
+}
+
+export interface CartItem {
+	sessionId: string;
+	quantity: number;
+	name: string;
+	price: number;
+}
+
+export interface UserSession {
+	id: string;
+	userId: string;
+	startedAt: Date;
+}
+
+export interface AddToCartVars {
+	userId: string;
+	item: CartItem;
 }

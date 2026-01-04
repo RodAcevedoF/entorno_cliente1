@@ -1,5 +1,9 @@
 import api from '../../lib/api';
 
+export const SESSIONS_ENDPOINTS = {
+	SESSIONS: '/sessions',
+};
+
 export interface Session {
 	id: number;
 	name: string;
@@ -15,7 +19,7 @@ export interface Session {
 
 export const SessionsService = {
 	getSessions: async (): Promise<Session[]> => {
-		const response = await api.get<Session[]>('/sessions');
+		const response = await api.get<Session[]>(SESSIONS_ENDPOINTS.SESSIONS);
 		return response.data;
 	},
 };
