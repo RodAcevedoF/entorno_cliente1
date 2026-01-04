@@ -1,11 +1,11 @@
-import { ValidationError } from '@/common/errors/errors.app';
-import api from '@/lib/api';
-import { comparePassword, hashPassword } from '@/lib/utils/encryption';
+import { ValidationError } from '../../common/errors/errors.app';
+import api from '../../lib/api';
+import { comparePassword, hashPassword } from '../../lib/utils/encryption';
 import {
 	validatePassword,
 	type PasswordValidationResult,
-} from '@/lib/utils/validatePassword';
-import type { User, UserDTO, UserSession } from '@/types/types.app';
+} from '../../lib/utils/validatePassword';
+import type { User, UserDTO, UserSession } from '../../types/types.app';
 import { v4 as uuidv4 } from 'uuid';
 
 export const AUTH_ENDPOINTS = {

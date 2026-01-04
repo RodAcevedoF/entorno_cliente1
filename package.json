@@ -8,7 +8,7 @@
 		"dev:client": "vite",
 		"dev:server": "json-server data/data.json --port 3000 --watch",
 		"build": "tsc -b && vite build",
-		"test": "vitest",
+		"test": "bun test",
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"check": "tsc --noEmit"
@@ -36,7 +36,6 @@
 		"globals": "^16.5.0",
 		"typescript": "~5.9.3",
 		"typescript-eslint": "^8.46.4",
-		"vite": "^7.2.4",
-		"vitest": "^4.0.16"
+		"vite": "^7.2.4"
 	}
 }
