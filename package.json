@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
 		"dev:client": "vite",
-		"dev:server": "json-server data/data.json --port 3000 --watch",
+		"dev:server": "json-server api/data.json --port 3000 --watch --snapshots api",
 		"build": "tsc -b && vite build",
 		"test": "bun test",
 		"lint": "eslint .",
@@ -20,6 +20,7 @@
 		"lucide-react": "^0.562.0",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
+		"react-intersection-observer": "^10.0.0",
 		"react-router": "^7.11.0",
 		"uuid": "^13.0.0"
 	},

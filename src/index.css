@@ -42,12 +42,19 @@
 	margin: 0;
 }
 
+html {
+	scroll-behavior: smooth;
+	scroll-snap-type: y mandatory;
+	scroll-padding-top: 80px;
+}
+
 body {
 	min-height: 100vh;
 	font-family: var(--font-body);
 	background-color: var(--color-bg-primary);
 	color: var(--color-text-primary);
 	line-height: 1.6;
+	overflow-x: hidden;
 }
 
 #root {
